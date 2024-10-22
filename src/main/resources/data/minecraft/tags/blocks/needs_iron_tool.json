@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "tutmod:uranium_ore"
+    "tutmod:uranium_ore",
+    "tutmod:uranium_block"
   ]
 }

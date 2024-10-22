@@ -1,8 +1,6 @@
 package net.reqi.tutmod;
 
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -20,9 +18,10 @@ public class TutorialMod
     {
         IEventBus modEventBus = context.getModEventBus();
 
+        CreativeTabInit.CREATIVE_TABS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         BlockInit.BLOCKS.register(modEventBus);
-        CreativeTabInit.TABS.register(modEventBus);
+
 
         MinecraftForge.EVENT_BUS.register(this);
 

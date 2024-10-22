@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tutmod:uranium_ingot"
+    }
+  },
+  "result": {
+    "item": "tutmod:uranium_block"
+  }
+}
