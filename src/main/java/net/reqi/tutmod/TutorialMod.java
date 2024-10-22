@@ -1,20 +1,14 @@
 package net.reqi.tutmod;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.reqi.tutmod.item.ModCreativeModTabs;
-import net.reqi.tutmod.item.ModItems;
-import org.slf4j.Logger;
+import net.reqi.tutmod.item.BlockInit;
+import net.reqi.tutmod.item.CreativeTabInit;
+import net.reqi.tutmod.item.ItemInit;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(TutorialMod.MOD_ID)
@@ -22,48 +16,15 @@ public class TutorialMod
 {
     public static final String MOD_ID = "tutmod";
 
-    private static final Logger LOGGER = LogUtils.getLogger();
-
     public TutorialMod(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
 
-        ModItems.register(modEventBus);
-        ModCreativeModTabs.register(modEventBus);
-
-        modEventBus.addListener(this::commonSetup);
+        ItemInit.ITEMS.register(modEventBus);
+        BlockInit.BLOCKS.register(modEventBus);
+        CreativeTabInit.TABS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        modEventBus.addListener(this::addCreative);
-    }
-
-    private void commonSetup(final FMLCommonSetupEvent event)
-    {
-
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event)
-    {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.URANIUM);
-            event.accept(ModItems.RAW_URANIUM);
-        }
-    }
-
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
-
-    }
-
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-
-        }
     }
 }
